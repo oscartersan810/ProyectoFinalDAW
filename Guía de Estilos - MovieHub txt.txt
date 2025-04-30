@@ -1,0 +1,113 @@
+Guía de Estilos - MovieHub
+
+Esta guía de estilos está diseñada para asegurar una apariencia consistente y moderna en toda la plataforma de MovieHub.
+
+1. Tipografía
+
+Fuente principal: Orbitron, sans-serif.
+
+Fuente secundaria (en cabecera): Concert One, cursiva.
+
+Colores del texto:
+
+Texto general: #FFFFFF (blanco)
+
+Texto secundario: #D1D5DB (gris claro Tailwind)
+
+2. Colores
+
+Fondo principal: #1e1e1e (gris oscuro)
+
+Cabecera y pie de página: #111827 (gris muy oscuro - Tailwind gray-900)
+
+Secciones alternas: #1F2937 (Tailwind gray-800)
+
+Hover en links: #86EFAC (verde suave - Tailwind green-300)
+
+3. Tamaño de Texto
+
+Links de navegación: text-base (equivale a 1rem / 16px)
+
+Títulos principales:
+
+text-3xl para encabezados principales (por ejemplo, "BIENVENIDO A MOVIEHUB").
+
+Títulos de secciones:
+
+text-2xl y font-bold.
+
+Subtítulos y descripciones:
+
+text-lg.
+
+4. Espaciados
+
+Navbar:
+
+px-6 py-4 (padding en los ejes X e Y)
+
+Secciones:
+
+py-10 px-4 (padding vertical generoso y horizontal moderado)
+
+5. Imágenes y logos
+
+Logo:
+
+Altura (h-20) y escalado (scale-150) para hacerlo visualmente más grande sin deformar la cabecera.
+
+Imágenes principales:
+
+Anchura de w-60.
+
+Bordes redondeados rounded-lg.
+
+Sombra shadow-xl.
+
+Animación hover:
+
+transform hover:scale-105 transition duration-500
+
+6. Botones / Enlaces
+
+Estado normal:
+
+Texto blanco.
+
+Hover:
+
+Color verde suave.
+
+Transición suave: transition duration-300.
+
+7. Layout
+
+Cabecera:
+
+flex justify-between items-center para alinear el logo a la izquierda y el menú a la derecha.
+
+Secciones principales:
+
+flex, grid o flex-col según necesidad.
+
+8. Animaciones
+
+En Navbar:
+
+Pequeño escalado en hover de los botones.
+
+En Imágenes:
+
+Agrandamiento suave al pasar el ratón (hover:scale-105).
+
+Entradas de Secciones:
+
+(Opcional si se desea añadir librerías como AOS) Animaciones tipo fade o slide al hacer scroll.
+
+9. Footer
+
+Estilo:
+
+text-center py-4 bg-gray-900 text-gray-400
+
+Nota: Esta guía está pensada para facilitar futuras ampliaciones y rediseños del sitio MovieHub.

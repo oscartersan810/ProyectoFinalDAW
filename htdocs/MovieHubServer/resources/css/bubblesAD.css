@@ -1,0 +1,63 @@
+#bubbles, #bubbles2, #bubbles3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    pointer-events: none;
+}
+
+#bubbles {
+    width: 4px;
+    height: 4px;
+    background: transparent;
+    box-shadow: 0 0 2px #20e3a2, 500px 1000px #20e3a2, 1000px 2000px #20e3a2;
+    animation: animStar linear infinite;
+    animation-duration: 60s;
+}
+
+#bubbles2 {
+    width: 6px;
+    height: 6px;
+    background: transparent;
+    box-shadow: 200px 800px #20e3a2, 600px 1200px #20e3a2;
+    animation: animStar linear infinite;
+    animation-duration: 40s;
+}
+
+#bubbles3 {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+    box-shadow: 100px 500px #20e3a2, 900px 1800px #20e3a2;
+    animation: animStar linear infinite;
+    animation-duration: 50s;
+}
+
+@keyframes animStar {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-2000px);
+    }
+}
+
+.buble {
+    border-radius: 100%;
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid #00ffff;
+    box-shadow: 0px 0px 15px 0px #00ffff inset;
+    transform: translate(-50%, -50%);
+    animation: colorgen 8s infinite, float 2s infinite;
+}
+
+@keyframes colorgen {
+    0% { opacity: 1; transform: translateY(0px); }
+    100% { opacity: 0; transform: translateY(-1000px); }
+}
+
+@keyframes float {
+    0%, 100% { margin-left: -30px; }
+    50% { margin-left: 30px; }
+}
