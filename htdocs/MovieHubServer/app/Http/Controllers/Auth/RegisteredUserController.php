@@ -9,7 +9,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
@@ -33,27 +35,21 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            // Eliminamos validación de 'avatar'
         ]);
-
-        $avatarPath = null;
-
-        if ($request->hasFile('avatar')) {
-            $avatarPath = $request->file('avatar')->store('avatars', 'public');
-        }
-
+    
+        // Creamos el usuario con avatar nulo (se seleccionará después)
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'avatar' => $avatarPath,
+            'avatar' => null,
         ]);
-        
-
+    
         event(new Registered($user));
-
+    
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+    
+        return redirect()->route('select.avatar'); // Redirige a la pantalla de selección
     }
 }

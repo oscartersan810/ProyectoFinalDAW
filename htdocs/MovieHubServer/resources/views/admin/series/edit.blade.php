@@ -1,0 +1,58 @@
+@extends('layouts.app')
+
+@section('content')
+    <main class="p-6 flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-60">
+        <div class="max-w-3xl mx-auto p-6 bg-gray-900 rounded-xl shadow-lg border border-green-400 text-white">
+            <h2 class="text-2xl font-bold text-green-300 mb-6">✏️ Editar Serie</h2>
+
+            <form action="{{ route('admin.series.update', $serie->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <div class="mb-4">
+                    <label class="block mb-1 text-green-300">Título</label>
+                    <input type="text" name="title" value="{{ old('title', $serie->title) }}" required
+                        class="w-full px-4 py-2 bg-gray-800 border border-green-400 rounded-lg text-white">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-1 text-green-300">Descripción</label>
+                    <textarea name="description" required
+                        class="w-full px-4 py-2 bg-gray-800 border border-green-400 rounded-lg text-white">{{ old('description', $serie->description) }}</textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-1 text-green-300">Póster actual</label>
+                    @if($serie->poster)
+                    <img src="{{ asset('storage/' . $serie->poster) }}" alt="Póster" class="h-32 mb-2 rounded shadow">
+                    @else
+                    <p class="text-sm text-gray-400">No hay póster subido.</p>
+                    @endif
+                    <input type="file" name="poster" accept="image/*"
+                        class="w-full px-4 py-2 bg-gray-800 border border-green-400 rounded-lg text-white">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-1 text-green-300">Género</label>
+                    <input type="text" name="genre" value="{{ old('genre', $serie->genre) }}" required
+                        class="w-full px-4 py-2 bg-gray-800 border border-green-400 rounded-lg text-white">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block mb-1 text-green-300">Año</label>
+                    <input type="number" name="year" value="{{ old('year', $serie->year) }}" required min="1880" max="2100"
+                        class="w-full px-4 py-2 bg-gray-800 border border-green-400 rounded-lg text-white">
+                </div>
+
+                <div class="flex justify-end">
+                    <a href="{{ route('admin.series') }}"
+                        class="mr-4 px-4 py-2 bg-gray-700 rounded hover:bg-gray-600 transition">Cancelar</a>
+                    <button type="submit"
+                        class="px-6 py-2 bg-green-400 text-black font-semibold rounded-lg hover:bg-green-300 transition">
+                        Guardar Cambios
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    @endsection

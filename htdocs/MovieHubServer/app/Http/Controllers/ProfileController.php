@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
+     * Muestra el formulario de edición del perfil.
      */
     public function edit(Request $request): View
     {
@@ -24,41 +22,37 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Actualiza la información del perfil del usuario.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
+    public function update(Request $request): RedirectResponse
+{
+    $user = Auth::user();
 
-        $user = $request->user();
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $user->id,
+        'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+    ]);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'avatar' => 'nullable|image|max:2048', // max 2MB
-        ]);
-    
-        // Si se subió un nuevo avatar
-        if ($request->hasFile('avatar')) {
-            // Borra el anterior si existe
-            if ($user->avatar) {
-                Storage::delete('public/avatars/' . $user->avatar);
-            }
-    
-            // Guarda el nuevo
-            $filename = Str::random(20) . '.' . $request->avatar->extension();
-            $request->avatar->storeAs('public/avatars', $filename);
-            $user->avatar = $filename;
+    $data = $request->only('name', 'email');
+
+    if ($request->hasFile('avatar')) {
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
         }
-    
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->save();
-    
-        return redirect()->route('profile.edit')->with('status', 'profile-updated');
+
+        // Guarda correctamente el nuevo avatar
+        $data['avatar'] = $request->file('avatar')->store('avatars', 'public');
     }
 
+    $user->fill($data);
+    $user->save();
+
+    return redirect()->route('dashboard')->with('status', 'profile-updated');
+}
+
     /**
-     * Delete the user's account.
+     * Elimina la cuenta del usuario.
      */
     public function destroy(Request $request): RedirectResponse
     {
@@ -77,4 +71,6 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
 }

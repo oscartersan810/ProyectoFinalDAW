@@ -1,84 +1,12 @@
-<!DOCTYPE html>
-<html lang="es">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MovieHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/bubblesAD.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
-
-        body {
-            background: #1e1e1e;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        #acerca bubles {
-            position: absolute;
-            border-radius: 100%;
-            pointer-events: none;
-            border: 1px solid #00ffff;
-            box-shadow: 0px 0px 15px 0px #00ffff inset;
-            transform: translate(-50%, -50%);
-            animation: colorgen 5s linear forwards, float 2s ease-in-out infinite;
-            z-index: 5;
-        }
-
-        @keyframes colorgen {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-1000px);
-            }
-        }
-    </style>
-</head>
-
-<body class="text-white">
-
-    <!-- NAVBAR -->
-    <nav class="px-6 py-4 bg-gray-900 text-white">
-        <div class="flex justify-between items-center">
-            <a href="#bienvenida">
-                <img src="/images/logo.png" alt="MovieHub Logo" class="h-16 md:h-20">
-            </a>
-            <div class="md:hidden">
-                <button id="menu-toggle" class="focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul id="nav-links" class="hidden md:flex space-x-6 text-base">
-                <li><a href="#bienvenida" class="hover:text-green-300 transition duration-300">Inicio</a></li>
-                <li><a href="#acerca" class="hover:text-green-300 transition duration-300">Explorar</a></li>
-                <li><a href="#acciones" class="hover:text-green-300 transition duration-300">Top Películas / Series</a></li>
-                <li><a href="#valorada" class="hover:text-green-300 transition duration-300">Reseñas</a></li>
-                <li><a href="{{ route('login') }}" class="hover:text-green-300 transition duration-300">Login</a></li>
-                <li><a href="{{ route('register') }}" class="hover:text-green-300 transition duration-300">Registrarse</a></li>
-            </ul>
-        </div>
-        <ul id="mobile-menu" class="md:hidden hidden flex-col mt-4 space-y-2 text-base">
-            <li><a href="#bienvenida" class="block hover:text-green-300">Inicio</a></li>
-            <li><a href="#acerca" class="block hover:text-green-300">Explorar</a></li>
-            <li><a href="#acciones" class="block hover:text-green-300">Top Películas / Series</a></li>
-            <li><a href="#valorada" class="block hover:text-green-300">Reseñas</a></li>
-            <li><a href="{{ route('login') }}" class="block hover:text-green-300">Login</a></li>
-            <li><a href="{{ route('register') }}" class="block hover:text-green-300">Registrarse</a></li>
-        </ul>
-    </nav>
-
+@section('content')
     <!-- BIENVENIDA -->
     <section id="bienvenida" class="text-center py-12 min-h-screen flex flex-col justify-center items-center bg-gray-700" data-aos="fade-up">
+        <!-- Canvas para burbujas -->
         <h1 class="text-2xl md:text-5xl font-bold text-white mb-10 tracking-wide">BIENVENIDO A MOVIEHUB</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-4 w-full max-w-6xl">
+            <canvas class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
             <div class="overflow-hidden rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-800">
                 <img src="/images/moviesimages/movie1.png" alt="Película 1" class="w-full h-48 md:h-[28rem] object-cover object-top">
             </div>
@@ -86,7 +14,7 @@
                 <img src="/images/moviesimages/movie2.jpg" alt="Película 2" class="w-full h-48 md:h-[28rem] object-cover object-top">
             </div>
             <div class="overflow-hidden rounded-2xl shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-800">
-                <img src="/images/moviesimages/movie3.jpg" alt="Película 3" class="w-full h-48 md:h-[28rem] object-cover object-top">
+                <img src="/images/moviesimages/movie3.png" alt="Película 3" class="w-full h-48 md:h-[28rem] object-cover object-top">
             </div>
         </div>
     </section>
@@ -173,90 +101,4 @@
             </div>
         </div>
     </section>
-
-    <!-- FOOTER -->
-    <footer class="text-center py-4 bg-gray-900 text-gray-400">
-        © 2025 MovieHub
-    </footer>
-
-    <!-- AOS Script y toggle menú -->
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
-
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        document.addEventListener("mousemove", (e) => {
-            const acercaSection = document.getElementById("acerca");
-            if (!acercaSection) return;
-
-            const rect = acercaSection.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
-
-            let bubles = document.createElement("bubles");
-            let size = Math.random() * 60;
-
-            bubles.style.width = 1 + size + "px";
-            bubles.style.height = 1 + size + "px";
-            bubles.style.left = x + "px";
-            bubles.style.top = y + "px";
-
-            acercaSection.appendChild(bubles);
-
-            setTimeout(() => bubles.remove(), 5000);
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.querySelector('#acciones canvas');
-    const ctx = canvas.getContext('2d');
-    let bubbles = [];
-
-    function resizeCanvas() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    for (let i = 0; i < 30; i++) {
-        bubbles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            radius: Math.random() * 10 + 5,
-            speed: Math.random() * 1 + 0.5,
-            opacity: Math.random() * 0.4 + 0.2
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for (let b of bubbles) {
-            ctx.beginPath();
-            ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${b.opacity})`;
-            ctx.fill();
-            b.y -= b.speed;
-            if (b.y + b.radius < 0) {
-                b.y = canvas.height + b.radius;
-                b.x = Math.random() * canvas.width;
-            }
-        }
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-});
-    </script>
-</body>
-
-</html>
+ @endsection
