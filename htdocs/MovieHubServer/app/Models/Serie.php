@@ -13,5 +13,14 @@ class Serie extends Model
         'genre',
         'year',
     ];
-    
+
+    public function reviews()
+    {
+        return $this->hasMany(ReviewSerie::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
+    }
 }

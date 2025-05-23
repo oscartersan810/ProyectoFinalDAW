@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage; // Importar Storage
-use App\Models\User;
+use Illuminate\Support\Str;
+
 
 class AvatarSelectionController extends Controller
 {
@@ -43,43 +44,48 @@ class AvatarSelectionController extends Controller
      */
     public function store(Request $request)
     {
-        // Validación
         $request->validate([
-            'avatar' => 'required|string',  // Aseguramos que se seleccione un avatar
+            'avatar' => 'required|string',
         ]);
-
-        // Obtener el usuario autenticado
-        $user = Auth::user();
-
-        if (!$user) {
-            abort(403, 'No estás autenticado.');
-        }
-
-        // Obtener el avatar seleccionado
-        $selectedAvatar = $request->avatar;
-
-        // Si es un avatar predeterminado (ruta dentro de `images/default_avatars`)
-        if (strpos($selectedAvatar, 'images/default_avatars/') !== false) {
-            // Guardar la ruta como está, pero solo la parte relevante
-            $avatarPath = 'images/default_avatars/' . basename($selectedAvatar);
-        } else {
-            // Si es un avatar personalizado (moverlo a storage/avatars)
-            if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
-                // Mover la imagen a la carpeta de avatars en el storage
-                $avatarPath = $request->file('avatar')->store('avatars', 'public');
-            } else {
-                // En caso de que no se haya subido ningún archivo, lo dejamos como estaba
-                return back()->with('error', 'Hubo un problema al subir el avatar.');
+    
+        $selectedPath = $request->input('avatar');
+        $user = auth()->user();
+    
+        // Eliminar avatar anterior si era personalizado (no predeterminado)
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            $defaultAvatars = File::files(public_path('images/default_avatars'));
+            $defaultNames = array_map(fn($f) => $f->getFilename(), $defaultAvatars);
+    
+            if (!in_array(basename($user->avatar), $defaultNames)) {
+                Storage::disk('public')->delete($user->avatar);
             }
         }
-
-        // Asignar el avatar al usuario
-        $user->avatar = $avatarPath;  // Guarda la ruta relativa
-
-        // Guardar el usuario con el nuevo avatar
-        $user->save();
-
-        // Redirigir al dashboard con un mensaje de éxito
-        return redirect()->route('dashboard')->with('success', 'Avatar seleccionado correctamente.');
+    
+        // Si el avatar viene desde la carpeta predeterminada
+        if (Str::contains($selectedPath, 'images/default_avatars/')) {
+            $filename = basename($selectedPath);
+    
+            // Convertimos la URL pública en ruta del sistema
+            $relativePath = str_replace(asset('/'), '', $selectedPath);
+            $sourcePath = public_path($relativePath);
+            $targetPath = storage_path('app/public/avatars/' . $filename);
+    
+            if (!File::exists($sourcePath)) {
+                return back()->withErrors(['avatar' => 'El avatar seleccionado no existe.']);
+            }
+    
+            // Copiar el archivo a storage si aún no está
+            if (!File::exists($targetPath)) {
+                File::copy($sourcePath, $targetPath);
+            }
+    
+            $user->avatar = 'avatars/' . $filename;
+            $user->save();
+        } elseif (Str::startsWith($selectedPath, 'storage/avatars/')) {
+            $user->avatar = str_replace('storage/', '', $selectedPath);
+            $user->save();
+        }
+    
+        return redirect()->route('dashboard')->with('success', 'Avatar actualizado correctamente.');
     }
 }

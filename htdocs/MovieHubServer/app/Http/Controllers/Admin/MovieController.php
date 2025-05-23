@@ -16,7 +16,7 @@ class MovieController extends Controller
         $search = $request->input('search');
         $movies = Movie::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
-        })->paginate(4);
+        })->paginate(6);
 
         return view('admin.movies.index', compact('movies'));
     }
@@ -56,6 +56,12 @@ class MovieController extends Controller
             'year' => $request->year,
         ]);
         return redirect()->route('admin.movies')->with('success', 'Película creada correctamente.');
+    }
+
+    public function show($id)
+    {
+        $movie = Movie::findOrFail($id);
+        return view('movies.show', compact('movie'));
     }
     /**
      * Mostrar el formulario para editar una película.

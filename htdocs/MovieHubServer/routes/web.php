@@ -1,25 +1,21 @@
 <?php
-
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Admin\MovieController;
 use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Explorer\ExplorerController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminMovieController;
 use App\Http\Controllers\AvatarSelectionController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ReviewMovieController;
+use App\Http\Controllers\ReviewSerieController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//Prueba Conexión con Angular
-
-Route::get('/ping', function () {
-    return response()->json([
-        'message' => 'Pong desde MovieHubServer!'
-    ]);
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -67,6 +63,23 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/explore', [ExplorerController::class, 'index'])->name('explore');
+
+
+// Ver todas las reseñas de películas
+Route::get('/reviews/movies', [ReviewMovieController::class, 'index'])->name('reviews.movies');
+
+// Ver todas las reseñas de series
+Route::get('/reviews/series', [ReviewSerieController::class, 'index'])->name('reviews.series');
+
+Route::get('/resenas/create', [ReviewController::class, 'create'])->name('resenas.create');
+Route::post('/resenas', [ReviewController::class, 'store'])->name('resenas.store');
+
+Route::post('/resenas/movies', [ReviewMovieController::class, 'store'])->name('resenas.pelicula.store');
+Route::post('/resenas/series', [ReviewSerieController::class, 'store'])->name('resenas.serie.store');
+
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+Route::get('/series/{id}', [SeriesController::class, 'show'])->name('series.show');
+
 
 
 require __DIR__.'/auth.php';

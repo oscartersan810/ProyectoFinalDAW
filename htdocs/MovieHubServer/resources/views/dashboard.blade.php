@@ -2,79 +2,163 @@
 
 @section('content')
 
-<!-- CONTENIDO PRINCIPAL -->
-<main class="p-6 flex flex-col items-center justify-center min-h-screen bg-black bg-opacity-60">
-    <div class="bg-gray-900 bg-opacity-80 rounded-2xl shadow-2xl p-10 w-full max-w-5xl text-white border border-green-300 backdrop-blur-sm">
-        <h1 class="text-4xl font-extrabold mb-4 text-center text-green-300 font-[Concert+One] animate-fade-in">
-            ¡Hola {{ Auth::user()->name }}!
-        </h1>
+<!-- DASHBOARD PRINCIPAL -->
+<main class="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-6">
+    <!-- Efecto de partículas -->
+    <div class="absolute inset-0 overflow-hidden opacity-20">
+        <div class="particle" style="top: 20%; left: 10%; width: 4px; height: 4px;"></div>
+        <div class="particle" style="top: 60%; left: 80%; width: 6px; height: 6px;"></div>
+        <div class="particle" style="top: 30%; left: 50%; width: 3px; height: 3px;"></div>
+    </div>
 
-        <!-- Foto de perfil en grande -->
-        <div class="flex justify-center mb-6 animate-fade-in delay-75">
-            @php
-            // Obtener la ruta completa del avatar
-            $avatarPath = Auth::user()->avatar;
-
-            // Verificar si el avatar está en storage/avatars o en images/default_avatars
-            $avatarUrl = Storage::disk('public')->exists('avatars/' . basename($avatarPath))
-            ? asset('storage/avatars/' . basename($avatarPath))
-            : asset('images/default_avatars/' . basename($avatarPath));
-            @endphp
-
-            <img src="{{ $avatarUrl }}"
-                alt="Avatar de {{ Auth::user()->name }}"
-                class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-green-300 shadow-lg">
+    <div class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-6xl border border-yellow-500 backdrop-blur-sm overflow-hidden">
+        <!-- Efecto de esquina -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500 opacity-10 rounded-bl-full"></div>
+        
+        <!-- Encabezado -->
+        <div class="text-center mb-10 relative z-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-400 animate-text-glow">
+                ¡Bienvenido, <span class="font-[Concert+One]">{{ Auth::user()->name }}</span>!
+            </h1>
+            
+            <!-- Avatar -->
+            <div class="flex justify-center mb-8">
+                @php
+                    $avatarPath = Auth::user()->avatar;
+                    $avatarUrl = Storage::disk('public')->exists('avatars/' . basename($avatarPath)) 
+                        ? asset('storage/avatars/' . basename($avatarPath)) 
+                        : asset('images/default_avatars/' . basename($avatarPath));
+                @endphp
+                
+                <div class="relative group">
+                    <img src="{{ $avatarUrl }}" 
+                         alt="Avatar de {{ Auth::user()->name }}"
+                         class="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-yellow-500 shadow-xl group-hover:border-green-400 transition duration-500">
+                    <div class="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-white opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                </div>
+            </div>
+            
+            <p class="text-xl text-gray-400 mb-2">Panel de control de tu cuenta</p>
+            <div class="w-24 h-1 bg-gradient-to-r from-yellow-500 to-green-500 mx-auto rounded-full"></div>
         </div>
 
-        <p class="text-lg text-center text-gray-300 mb-6 animate-fade-in delay-100">
-            Opciones de perfil
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 mt-8">
-            <!-- Opciones generales -->
-            <a href="#"
-                class="border border-white text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-white hover:text-black transition duration-300 ease-in-out animate-pop-in">
-                🎬 Mis reseñas
+        <!-- Opciones principales -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            <!-- Tarjeta 1 -->
+            <a href="#" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-500 p-3 rounded-lg mr-4 group-hover:bg-yellow-600 transition">
+                        <span class="text-2xl">🎬</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Mis reseñas</h3>
+                </div>
+                <p class="text-gray-400">Revisa y gestiona todas tus reseñas</p>
             </a>
-            <a href="#"
-                class="border border-white text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-white hover:text-black transition duration-300 ease-in-out animate-pop-in">
-                ⭐ Películas puntuadas
+            
+            <!-- Tarjeta 2 -->
+            <a href="#" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <div class="flex items-center mb-4">
+                    <div class="bg-pink-500 p-3 rounded-lg mr-4 group-hover:bg-pink-600 transition">
+                        <span class="text-2xl">⭐</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Películas puntuadas</h3>
+                </div>
+                <p class="text-gray-400">Tus valoraciones y calificaciones</p>
             </a>
-            <a href="{{ route('profile.edit') }}"
-                class="border border-white text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-white hover:text-black transition duration-300 ease-in-out animate-pop-in">
-                ✏️ Editar perfil
+            
+            <!-- Tarjeta 3 -->
+            <a href="{{ route('profile.edit') }}" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <div class="flex items-center mb-4">
+                    <div class="bg-yellow-500 p-3 rounded-lg mr-4 group-hover:bg-yellow-600 transition">
+                        <span class="text-2xl">✏️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Editar perfil</h3>
+                </div>
+                <p class="text-gray-400">Actualiza tu información personal</p>
             </a>
-            <form method="POST" action="{{ route('logout') }}" class="animate-pop-in delay-300">
+            
+            <!-- Tarjeta 4 -->
+            <form method="POST" action="{{ route('logout') }}" class="contents">
                 @csrf
-                <button type="submit"
-                    class="w-full border border-white text-white py-4 px-6 rounded-xl shadow-lg transform hover:scale-105 hover:bg-white hover:text-black transition duration-300 ease-in-out animate-pop-in">
-                    🔒 Cerrar sesión
+                <button type="submit" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-red-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group text-left w-full">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-500 p-3 rounded-lg mr-4 group-hover:bg-red-600 transition">
+                            <span class="text-2xl">🔒</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Cerrar sesión</h3>
+                    </div>
+                    <p class="text-gray-400">Salir de tu cuenta</p>
                 </button>
             </form>
-
-            <!-- Opciones de administrador -->
-            @auth
-            @if(Auth::user()->role === 'admin')
-            <a href="{{ route('admin.movies') }}"
-                class="border border-green-400 text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-green-400 hover:text-black transition duration-300 ease-in-out animate-pop-in delay-400">
-                🎥 Administrar películas
-            </a>
-            <a href="{{ route('admin.series') }}"
-                class="border border-green-400 text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-green-400 hover:text-black transition duration-300 ease-in-out animate-pop-in delay-400">
-                📺 Administrar series
-            </a>
-
-            <!-- Botón centrado en su propia fila -->
-            <div class="col-span-1 sm:col-span-2 flex justify-center animate-pop-in delay-600">
-                <a href="{{ route('admin.users') }}"
-                    class="border border-green-400 text-white py-4 px-6 rounded-xl text-center shadow-lg transform hover:scale-105 hover:bg-green-400 hover:text-black transition duration-300 ease-in-out w-full sm:w-1/2">
-                    👥 Administrar usuarios
-                </a>
-            </div>
-            @endif
-            @endauth
         </div>
 
+        <!-- Panel de administrador -->
+        @auth
+        @if(Auth::user()->role === 'admin')
+        <div class="mt-12 pt-8 border-t border-gray-800">
+            <h2 class="text-2xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
+                Panel de Administrador
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Admin 1 -->
+                <a href="{{ route('admin.movies') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
+                            <span class="text-2xl">🎥</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Administrar películas</h3>
+                    </div>
+                    <p class="text-gray-400">Gestiona el catálogo de películas</p>
+                </a>
+                
+                <!-- Admin 2 -->
+                <a href="{{ route('admin.series') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
+                            <span class="text-2xl">📺</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Administrar series</h3>
+                    </div>
+                    <p class="text-gray-400">Gestiona el catálogo de series</p>
+                </a>
+                
+                <!-- Admin 3 -->
+                <a href="{{ route('admin.users') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
+                            <span class="text-2xl">👥</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Administrar usuarios</h3>
+                    </div>
+                    <p class="text-gray-400">Gestiona los usuarios del sistema</p>
+                </a>
+            </div>
+        </div>
+        @endif
+        @endauth
     </div>
 </main>
+
+<!-- Estilos personalizados -->
+<style>
+    .animate-text-glow {
+        animation: text-glow 3s ease-in-out infinite alternate;
+    }
+    @keyframes text-glow {
+        from { text-shadow: 0 0 5px rgba(247, 239, 5, 0.5); }
+        to { text-shadow: 0 0 15px rgba(16, 185, 129, 0.7); }
+    }
+    
+    .particle {
+        position: absolute;
+        background-color: rgba(199, 228, 12, 0.6);
+        border-radius: 50%;
+        animation: float 8s infinite ease-in-out;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+</style>
 @endsection

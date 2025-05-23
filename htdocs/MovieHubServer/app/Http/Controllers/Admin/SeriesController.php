@@ -17,7 +17,7 @@ class SeriesController extends Controller
         $search = $request->input('search');
         $series = Serie::when($search, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%');
-        })->paginate(4);
+        })->paginate(6);
 
         return view('admin.series.index', compact('series'));
     }
@@ -60,6 +60,12 @@ class SeriesController extends Controller
         ]);
 
         return redirect()->route('admin.series')->with('success', 'Serie añadida correctamente.');
+    }
+
+    public function show($id)
+    {
+        $serie = Serie::findOrFail($id);
+        return view('series.show', compact('serie'));
     }
 
     /**

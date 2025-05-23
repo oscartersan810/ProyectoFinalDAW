@@ -14,4 +14,18 @@ class Movie extends Model
         'genre',
         'year',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany(ReviewMovie::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
+    }
+
+    
+
+    
 }
