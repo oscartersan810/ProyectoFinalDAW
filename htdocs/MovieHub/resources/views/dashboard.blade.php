@@ -17,7 +17,7 @@
         
         <!-- Encabezado -->
         <div class="text-center mb-10 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-400 animate-text-glow">
+            <h1 class="text-4xl md:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-400 animate-text-glow">
                 ¡Bienvenido, <span class="font-[Concert+One]">{{ Auth::user()->name }}</span>!
             </h1>
             

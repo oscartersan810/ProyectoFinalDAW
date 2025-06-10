@@ -51,8 +51,12 @@
                 font-size: 1.3rem !important;
             }
             
-            p, a, li, span, button {
+            p, a, li, button {
                 font-size: 0.9rem !important;
+            }
+
+            span{
+                font-size: 1.4rem !important;
             }
             
             /* Ajustes específicos para elementos comunes */
@@ -61,7 +65,7 @@
             }
             
             .text-2xl {
-                font-size: 1.3rem !important;
+                font-size: 1.4rem !important;
             }
             
             .text-3xl {
