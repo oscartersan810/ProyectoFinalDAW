@@ -15,7 +15,6 @@
     <!-- MODAL -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-
     <!-- Fuentes -->
     <link href="https://fonts.googleapis.com/css2?family=Concert+One&display=swap" rel="stylesheet">
 
@@ -31,6 +30,51 @@
             background-size: cover;
             background-repeat: repeat;
             background-position: center;
+            font-size: 16px; /* Tamaño base para desktop */
+        }
+
+        /* Tamaños de fuente para móviles */
+        @media (max-width: 768px) {
+            html, body {
+                font-size: 14px;
+            }
+            
+            h1 {
+                font-size: 1.8rem !important;
+            }
+            
+            h2 {
+                font-size: 1.5rem !important;
+            }
+            
+            h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            p, a, li, span, button {
+                font-size: 0.9rem !important;
+            }
+            
+            /* Ajustes específicos para elementos comunes */
+            .text-xl {
+                font-size: 1.1rem !important;
+            }
+            
+            .text-2xl {
+                font-size: 1.3rem !important;
+            }
+            
+            .text-3xl {
+                font-size: 1.5rem !important;
+            }
+            
+            .text-4xl {
+                font-size: 1.7rem !important;
+            }
+            
+            .text-5xl {
+                font-size: 2rem !important;
+            }
         }
 
         /* Fondo para escritorio */
@@ -54,10 +98,17 @@
 
         section {
             background-color: rgba(255, 255, 255, 0.85);
-            /* blanco semi-transparente */
             margin: 2rem;
             padding: 2rem;
             border-radius: 1rem;
+        }
+
+        /* Ajustes de márgenes para móviles */
+        @media (max-width: 768px) {
+            section {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
         }
 
         #acerca bubles {
