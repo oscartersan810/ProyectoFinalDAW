@@ -6,7 +6,7 @@
     <title>Restablecer contraseña - MovieHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
         html, body {
             height: 100%;
@@ -41,7 +41,7 @@
 
     <!-- Contenido del formulario -->
     <div class="relative z-10 w-full max-w-md bg-gray-900 rounded-xl shadow-lg p-8">
-        <h2 class="text-3xl font-bold text-green-300 text-center mb-6">Restablecer contraseña</h2>
+        <h2 class="text-3xl font-bold text-yellow-300 text-center mb-6">Restablecer contraseña</h2>
 
         <form method="POST" action="{{ route('password.store') }}" class="space-y-6">
             @csrf
@@ -53,7 +53,7 @@
             <div>
                 <label for="email" class="block text-sm font-medium mb-1">Correo electrónico</label>
                 <input id="email" name="email" type="email" required autofocus autocomplete="username"
-                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300"
+                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-300"
                        value="{{ old('email', $request->email) }}">
                 @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -64,7 +64,7 @@
             <div>
                 <label for="password" class="block text-sm font-medium mb-1">Nueva contraseña</label>
                 <input id="password" name="password" type="password" required autocomplete="new-password"
-                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300">
+                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-300">
                 @error('password')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -74,7 +74,7 @@
             <div>
                 <label for="password_confirmation" class="block text-sm font-medium mb-1">Confirmar contraseña</label>
                 <input id="password_confirmation" name="password_confirmation" type="password" required autocomplete="new-password"
-                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300">
+                       class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-300">
                 @error('password_confirmation')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -83,7 +83,7 @@
             <!-- Botón -->
             <div>
                 <button type="submit"
-                        class="w-full py-2 px-4 bg-green-400 hover:bg-green-500 text-black font-bold rounded-lg transition duration-300 transform hover:scale-105">
+                        class="w-full py-2 px-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition duration-300 transform hover:scale-105">
                     Restablecer contraseña
                 </button>
             </div>
