@@ -14,7 +14,7 @@
                     </h1>
                     <div class="absolute bottom-0 left-0 w-full h-2 bg-yellow-500 opacity-30 rounded-full transform translate-y-1 z-0"></div>
                 </div>
-                
+
                 <div class="mt-6">
                     @if(isset($movie))
                     <div class="inline-flex items-center bg-gray-900 px-4 py-2 rounded-full border border-yellow-500/20">
@@ -59,14 +59,14 @@
                     </label>
                     <div class="flex justify-center space-x-1 mb-3 flex-row-reverse">
                         @for($i = 5; $i >= 1; $i--)
-                            <input type="radio" name="rating" id="star-{{ $i }}" value="{{ $i }}"
+                        <input type="radio" name="rating" id="star-{{ $i }}" value="{{ $i }}"
                             class="hidden peer" {{ old('rating') == $i ? 'checked' : '' }} required>
-                            <label for="star-{{ $i }}"
-                                class="text-3xl cursor-pointer text-gray-600 hover:text-yellow-300 transition transform hover:scale-110 duration-200
+                        <label for="star-{{ $i }}"
+                            class="text-3xl cursor-pointer text-gray-600 hover:text-yellow-300 transition transform hover:scale-110 duration-200
                                 peer-checked:text-yellow-400
                                 peer-checked~label:text-yellow-400">
-                                ★
-                            </label>
+                            ★
+                        </label>
                         @endfor
                     </div>
                     <div class="flex justify-between text-sm text-gray-500 px-2 mt-2">
@@ -90,11 +90,11 @@
                             placeholder="Escribe aquí tus impresiones, lo que te gustó, lo que no... sé sincero/a con tu opinión sobre esta {{ isset($movie) ? 'película' : 'serie' }}..."
                             required>{{ old('content') }}</textarea>
                         <div class="absolute bottom-3 right-3 text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
-                            <span id="char-count">0</span>/500
+                            <span id="char-count">{{ strlen(old('content') ?? '') }}</span>/500
                         </div>
                     </div>
                     @error('content')
-                        <p class="text-red-400 text-sm mt-1">{{ $__messageOriginal }}</p>
+                    <p class="text-red-400 text-sm mt-1">{{ $__messageOriginal }}</p>
                     @enderror
                 </div>
 
@@ -137,10 +137,10 @@
     document.getElementById('content').addEventListener('input', function() {
         const charCount = this.value.length;
         document.getElementById('char-count').textContent = charCount;
-        
+
         // Cambiar color si se acerca al límite
         const counter = document.getElementById('char-count');
-        if(charCount > 450) {
+        if (charCount > 450) {
             counter.classList.add('text-yellow-400');
             counter.classList.remove('text-gray-500');
         } else {
@@ -148,6 +148,27 @@
             counter.classList.add('text-gray-500');
         }
     });
+
+    const textarea = document.getElementById('content');
+    const charCountSpan = document.getElementById('char-count');
+
+    function updateCharCount() {
+        const length = textarea.value.length;
+        charCountSpan.textContent = length;
+
+        if (length > 450) {
+            charCountSpan.classList.add('text-yellow-400');
+            charCountSpan.classList.remove('text-gray-500');
+        } else {
+            charCountSpan.classList.remove('text-yellow-400');
+            charCountSpan.classList.add('text-gray-500');
+        }
+    }
+
+    textarea.addEventListener('input', updateCharCount);
+
+    // Inicializar contador al cargar la página
+    updateCharCount();
 </script>
 @endpush
 
