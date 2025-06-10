@@ -36,17 +36,17 @@
     </style>
 </head>
 
-<body class="text-white flex items-center justify-center min-h-screen overflow-hidden relative">
+<body class="text-white flex items-center justify-center min-h-screen relative overflow-auto">
 
     <!-- Fondo animado de burbujas -->
     <canvas class="absolute top-0 left-0 w-full h-full z-0 pointer-events-none"></canvas>
 
     <!-- Contenedor del formulario -->
-    <div class="relative z-10 w-full max-w-2xl bg-gray-900 rounded-xl shadow-lg p-10 space-y-6">
-        <h1 class="text-3xl font-bold text-green-300 text-center">Editar Perfil</h1>
+    <div class="relative z-10 w-full max-w-2xl bg-gray-900 rounded-xl shadow-lg p-5 md:p-10 space-y-6 overflow-auto">
+        <h1 class="text-2xl md:text-3xl font-bold text-yellow-400 text-center">Editar Perfil</h1>
 
         @if (session('status') === 'profile-updated')
-        <div class="bg-green-500 text-white text-center p-3 rounded-md">
+        <div class="bg-yellow-500 text-white text-center p-3 rounded-md text-sm md:text-base">
             Perfil actualizado con éxito.
         </div>
         @endif
@@ -57,36 +57,35 @@
 
             <!-- Nombre -->
             <div>
-                <label for="name" class="block text-sm mb-1">Nombre</label>
+                <label for="name" class="block text-xs md:text-sm mb-1 text-yellow-300">Nombre</label>
                 <input type="text" name="name" id="name" value="{{ old('name', auth()->user()->name) }}" required
-                    class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300">
+                    class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm md:text-base">
             </div>
 
             <!-- Email -->
             <div>
-                <label for="email" class="block text-sm mb-1">Correo electrónico</label>
+                <label for="email" class="block text-xs md:text-sm mb-1 text-yellow-300">Correo electrónico</label>
                 <input type="email" name="email" id="email" value="{{ old('email', auth()->user()->email) }}" required
-                    class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300">
+                    class="w-full px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm md:text-base">
             </div>
 
             <!-- Avatar -->
             <div>
-                <label for="avatar" class="block text-sm mb-1">Foto de Perfil</label>
+                <label for="avatar" class="block text-xs md:text-sm mb-1 text-yellow-300">Foto de Perfil</label>
                 <input type="file" name="avatar" id="avatar" accept="image/*"
-                    class="w-full bg-gray-800 text-white border border-gray-700 p-2 rounded cursor-pointer">
+                    class="w-full bg-gray-800 text-white border border-gray-700 p-2 rounded cursor-pointer text-xs md:text-sm">
                 @if (auth()->user()->avatar)
                 <div class="mt-4">
-                    <p class="text-sm text-gray-400">Vista previa actual:</p>
-                    <img src="{{ Storage::url(auth()->user()->avatar) }}" class="w-24 h-24 rounded-full object-cover">
-
+                    <p class="text-xs md:text-sm text-gray-400">Vista previa actual:</p>
+                    <img src="{{ Storage::url(auth()->user()->avatar) }}" class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover">
                 </div>
                 @endif
             </div>
 
             <!-- Botón -->
-            <div class="text-center pt-4">
+            <div class="text-center pt-2 md:pt-4">
                 <button type="submit"
-                    class="w-full py-2 px-4 bg-green-400 hover:bg-green-500 text-black font-bold rounded-lg transition duration-300 transform hover:scale-105">
+                    class="w-full py-2 px-4 bg-yellow-400 hover:bg-yellow-500 text-black font-bold rounded-lg transition duration-300 transform hover:scale-105 text-base md:text-lg">
                     Guardar Cambios
                 </button>
             </div>

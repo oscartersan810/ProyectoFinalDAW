@@ -11,14 +11,14 @@
                 <h1 class="text-3xl md:text-4xl font-bold text-white tracking-wide">
                     ESCRIBIR RESEÑA
                 </h1>
-                <div class="w-16 h-1 bg-indigo-500 mx-auto mt-3 rounded-full"></div>
+                <div class="w-16 h-1 bg-yellow-500 mx-auto mt-3 rounded-full"></div>
 
                 @if(isset($movie))
-                <p class="text-indigo-400 mt-4 text-lg">
+                <p class="text-yellow-400 mt-4 text-lg">
                     Para: <span class="font-semibold">{{ $movie->title }}</span>
                 </p>
                 @elseif(isset($serie))
-                <p class="text-indigo-400 mt-4 text-lg">
+                <p class="text-yellow-400 mt-4 text-lg">
                     Para: <span class="font-semibold">{{ $serie->title }}</span>
                 </p>
                 @endif
@@ -64,7 +64,7 @@
                 <div>
                     <label for="content" class="block text-lg font-medium text-gray-300 mb-2">Tu Reseña</label>
                     <textarea name="content" id="content" rows="6"
-                        class="w-full bg-gray-700 border border-gray-600 rounded-xl p-4 text-gray-300 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent placeholder-gray-500"
+                        class="w-full bg-gray-700 border border-gray-600 rounded-xl p-4 text-gray-300 shadow-sm focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500"
                         placeholder="Comparte tus pensamientos sobre esta {{ isset($movie) ? 'película' : 'serie' }}..."
                         required>{{ old('content') }}</textarea>
                     @error('content')
@@ -75,7 +75,7 @@
                 {{-- Botón --}}
                 <div class="pt-4">
                     <button type="submit"
-                        class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                        class="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
                         PUBLICAR RESEÑA
                     </button>
                 </div>
@@ -85,7 +85,7 @@
         {{-- Volver --}}
         <div class="text-center mt-8">
             <a href="{{ isset($movie) ? route('movies.show', $movie->id) : route('series.show', $serie->id) }}"
-                class="text-indigo-400 hover:text-indigo-300 inline-flex items-center transition">
+                class="text-yellow-400 hover:text-yellow-300 inline-flex items-center transition">
                 <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>

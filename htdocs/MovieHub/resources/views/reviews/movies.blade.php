@@ -12,7 +12,7 @@
             <h1 class="text-3xl md:text-5xl font-bold text-white tracking-wide">
                 RESEÑAS DE PELÍCULAS
             </h1>
-            <div class="w-20 h-1 bg-indigo-500 mx-auto mt-4 rounded-full"></div>
+            <div class="w-20 h-1 bg-yellow-500 mx-auto mt-4 rounded-full"></div>
         </div>
 
         {{-- Filtros de búsqueda --}}
@@ -20,18 +20,18 @@
             <div class="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 justify-center">
                 <input type="text" name="movie_title" value="{{ request('movie_title') }}"
                     placeholder="Título de la película"
-                    class="w-full md:w-60 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    class="w-full md:w-60 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500" />
                 <input type="text" name="user_name" value="{{ request('user_name') }}"
                     placeholder="Nombre de usuario"
-                    class="w-full md:w-60 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                <select name="rating" class="w-full md:w-40 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    class="w-full md:w-60 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500" />
+                <select name="rating" class="w-full md:w-40 px-4 py-2 rounded-lg bg-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
                     <option value="">Todos los puntajes</option>
                     @for ($i = 5; $i >= 1; $i--)
                     <option value="{{ $i }}" @if(request('rating')==$i) selected @endif>{{ $i }} estrellas</option>
                     @endfor
                 </select>
                 <button type="submit"
-                    class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition font-semibold shadow">
+                    class="px-6 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition font-semibold shadow">
                     Filtrar
                 </button>
             </div>
@@ -46,15 +46,15 @@
                 <div class="flex items-center mb-4">
                     <div class="relative">
                         <img src="{{ asset('storage/' . $review->user->avatar) }}"
-                            class="w-14 h-14 rounded-full border-2 border-indigo-500 object-cover"
+                            class="w-14 h-14 rounded-full border-2 border-yellow-500 object-cover"
                             alt="Avatar de {{ $review->user->name }}">
-                        <div class="absolute -bottom-1 -right-1 bg-indigo-600 rounded-full w-6 h-6 flex items-center justify-center">
+                        <div class="absolute -bottom-1 -right-1 bg-yellow-600 rounded-full w-6 h-6 flex items-center justify-center">
                             <span class="text-white text-xs font-bold">★</span>
                         </div>
                     </div>
                     <div class="ml-4">
                         <h3 class="text-xl font-bold text-white">{{ $review->movie->title }}</h3>
-                        <p class="text-indigo-400">{{ $review->user->name }}</p>
+                        <p class="text-yellow-400">{{ $review->user->name }}</p>
                     </div>
                 </div>
 
