@@ -8,22 +8,22 @@
         <div class="particle" style="top: 65%; left: 75%; width: 6px; height: 6px;"></div>
     </div>
 
-    <div class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-6xl border border-indigo-500 backdrop-blur-sm overflow-hidden">
+    <div class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-6xl border border-yellow-500 backdrop-blur-sm overflow-hidden">
         <!-- Efecto de esquina -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-10 rounded-bl-full"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500 opacity-10 rounded-bl-full"></div>
         
         <!-- Encabezado -->
         <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-10 relative z-10">
             <div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-green-400">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-400">
                     📺 Administrar Series
                 </h1>
-                <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-green-500 rounded-full mb-6"></div>
+                <div class="w-24 h-1 bg-gradient-to-r from-yellow-500 to-green-500 rounded-full mb-6"></div>
             </div>
             
             <div class="flex flex-col sm:flex-row gap-4">
                 <a href="{{ route('admin.series.create') }}" 
-                    class="bg-gradient-to-r from-indigo-600 to-green-600 text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:from-indigo-500 hover:to-green-500 transition duration-300 flex items-center justify-center">
+                    class="bg-gradient-to-r from-yellow-600 to-green-600 text-white font-semibold py-2 px-6 rounded-xl shadow-lg hover:from-yellow-500 hover:to-green-500 transition duration-300 flex items-center justify-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
@@ -32,9 +32,9 @@
                 
                 <form method="GET" action="{{ route('admin.series') }}" class="flex">
                     <input type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}"
-                        class="px-4 py-2 rounded-l-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full">
+                        class="px-4 py-2 rounded-l-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-full">
                     <button type="submit"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded-r-lg hover:bg-indigo-500 transition duration-300 flex items-center">
+                        class="bg-yellow-600 text-white px-4 py-2 rounded-r-lg hover:bg-yellow-500 transition duration-300 flex items-center">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
@@ -55,7 +55,7 @@
         @else
             <div class="overflow-x-auto rounded-xl border border-gray-700 shadow-lg">
                 <table class="min-w-full divide-y divide-gray-700">
-                    <thead class="bg-gradient-to-r from-indigo-600 to-green-600">
+                    <thead class="bg-gradient-to-r from-yellow-600 to-green-600">
                         <tr>
                             <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
                                 Póster
@@ -102,7 +102,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                     {{ $serie->genre }}
                                 </span>
                             </td>
@@ -111,7 +111,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex justify-end space-x-3">
-                                    <a href="{{ route('admin.series.edit', $serie->id) }}" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                    <a href="{{ route('admin.series.edit', $serie->id) }}" class="text-yellow-400 hover:text-yellow-300 transition flex items-center">
                                         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>

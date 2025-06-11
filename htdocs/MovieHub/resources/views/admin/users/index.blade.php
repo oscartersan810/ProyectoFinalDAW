@@ -8,16 +8,16 @@
         <div class="particle" style="top: 60%; left: 80%; width: 6px; height: 6px;"></div>
     </div>
 
-    <div class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-6xl border border-indigo-500 backdrop-blur-sm overflow-hidden">
+    <div class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-6xl border border-yellow-500 backdrop-blur-sm overflow-hidden">
         <!-- Efecto de esquina -->
-        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500 opacity-10 rounded-bl-full"></div>
+        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500 opacity-10 rounded-bl-full"></div>
         
         <!-- Encabezado -->
         <div class="text-center mb-10 relative z-10">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-green-400">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-green-400">
                 👥 Administración de Usuarios
             </h1>
-            <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-green-500 mx-auto rounded-full mb-6"></div>
+            <div class="w-24 h-1 bg-gradient-to-r from-yellow-500 to-green-500 mx-auto rounded-full mb-6"></div>
             
             @if (session('success'))
                 <div class="bg-green-600 bg-opacity-20 border border-green-500 text-green-300 px-6 py-3 rounded-xl mb-6 shadow-lg">
@@ -41,7 +41,7 @@
         @else
             <div class="overflow-x-auto rounded-xl border border-gray-700 shadow-lg">
                 <table class="min-w-full divide-y divide-gray-700">
-                    <thead class="bg-gradient-to-r from-indigo-600 to-green-600">
+                    <thead class="bg-gradient-to-r from-yellow-600 to-green-600">
                         <tr>
                             <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
                                 <div class="flex items-center">
@@ -72,7 +72,7 @@
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0 h-12 w-12">
                                         @if ($user->avatar)
-                                            <img class="h-12 w-12 rounded-full border-2 border-indigo-400 object-cover" src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar">
+                                            <img class="h-12 w-12 rounded-full border-2 border-yellow-400 object-cover" src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar">
                                         @else
                                             <div class="h-12 w-12 rounded-full bg-gray-700 flex items-center justify-center border-2 border-gray-600">
                                                 <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,7 +97,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex justify-end space-x-3">
-                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-indigo-400 hover:text-indigo-300 transition flex items-center">
+                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-yellow-400 hover:text-yellow-300 transition flex items-center">
                                         <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>
@@ -133,7 +133,7 @@
 <style>
     .particle {
         position: absolute;
-        background-color: rgba(99, 102, 241, 0.6);
+        background-color: rgba(241, 239, 99, 0.6);
         border-radius: 50%;
         animation: float 8s infinite ease-in-out;
     }
