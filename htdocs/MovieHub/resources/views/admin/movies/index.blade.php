@@ -57,22 +57,22 @@
                 <table class="min-w-full divide-y divide-gray-700">
                     <thead class="bg-gradient-to-r from-yellow-600 to-green-600">
                         <tr>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider w-20">
                                 Póster
                             </th>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider min-w-[150px]">
                                 Título
                             </th>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider hidden md:table-cell">
                                 Descripción
                             </th>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider w-24">
                                 Género
                             </th>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-left text-sm font-bold text-white uppercase tracking-wider w-20">
                                 Año
                             </th>
-                            <th scope="col" class="px-6 py-4 text-right text-sm font-bold text-white uppercase tracking-wider">
+                            <th scope="col" class="px-4 py-3 text-right text-sm font-bold text-white uppercase tracking-wider min-w-[150px]">
                                 Acciones
                             </th>
                         </tr>
@@ -80,52 +80,52 @@
                     <tbody class="bg-gray-800 divide-y divide-gray-700">
                         @foreach($movies as $movie)
                         <tr class="hover:bg-gray-750 transition duration-150">
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex-shrink-0 h-20 w-16">
+                            <td class="px-4 py-3">
+                                <div class="flex-shrink-0 h-16 w-12">
                                     @if($movie->poster)
-                                        <img class="h-20 w-16 rounded-lg object-cover border border-gray-600 shadow" src="{{ asset('storage/' . $movie->poster) }}" alt="Póster">
+                                        <img class="h-16 w-12 rounded-lg object-cover border border-gray-600 shadow" src="{{ asset('storage/' . $movie->poster) }}" alt="Póster">
                                     @else
-                                        <div class="h-20 w-16 rounded-lg bg-gray-700 flex items-center justify-center border border-gray-600">
-                                            <svg class="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="h-16 w-12 rounded-lg bg-gray-700 flex items-center justify-center border border-gray-600">
+                                            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
                                         </div>
                                     @endif
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-3">
                                 <div class="text-sm font-medium text-white">{{ $movie->title }}</div>
                             </td>
-                            <td class="px-6 py-4">
-                                <div class="text-sm text-gray-300 max-w-xs truncate" title="{{ $movie->description }}">
-                                    {{ \Illuminate\Support\Str::limit($movie->description, 60) }}
+                            <td class="px-4 py-3 hidden md:table-cell">
+                                <div class="text-sm text-gray-300 line-clamp-2" title="{{ $movie->description }}">
+                                    {{ $movie->description }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-3">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                     {{ $movie->genre }}
                                 </span>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-3">
                                 <div class="text-sm text-gray-300">{{ $movie->year }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <div class="flex justify-end space-x-3">
-                                    <a href="{{ route('admin.movies.edit', $movie->id) }}" class="text-yellow-400 hover:text-yellow-300 transition flex items-center">
-                                        <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <td class="px-4 py-3 text-right text-sm font-medium">
+                                <div class="flex justify-end space-x-2">
+                                    <a href="{{ route('admin.movies.edit', $movie->id) }}" class="text-yellow-400 hover:text-yellow-300 transition flex items-center" title="Editar">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                         </svg>
-                                        Editar
+                                        <span class="hidden sm:inline ml-1">Editar</span>
                                     </a>
                                     <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('¿Estás seguro de eliminar esta película?')" 
-                                            class="text-red-400 hover:text-red-300 transition flex items-center">
-                                            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            class="text-red-400 hover:text-red-300 transition flex items-center" title="Eliminar">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                             </svg>
-                                            Eliminar
+                                            <span class="hidden sm:inline ml-1">Eliminar</span>
                                         </button>
                                     </form>
                                 </div>
@@ -137,9 +137,9 @@
             </div>
 
             <!-- Paginación -->
-                <div class="mt-8">
-                    {{ $movies->links() }}
-                </div>
+            <div class="mt-8">
+                {{ $movies->links() }}
+            </div>
         @endif
     </div>
 </main>
@@ -147,7 +147,7 @@
 <style>
     .particle {
         position: absolute;
-        background-color: rgba(99, 102, 241, 0.6);
+        background-color: rgba(201, 201, 52, 0.6);
         border-radius: 50%;
         animation: float 8s infinite ease-in-out;
     }
