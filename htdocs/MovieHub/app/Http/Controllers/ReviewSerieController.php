@@ -61,6 +61,20 @@ class ReviewSerieController extends Controller
 
         return redirect()->route('explore')->with('success', 'Reseña publicada');
     }
+    
+    public function destroy($id)
+    {
+        $review = ReviewSerie::findOrFail($id);
+
+        // Verifica que el usuario sea el dueño de la reseña
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $review->delete();
+
+        return back()->with('success', 'Reseña eliminada correctamente.');
+    }
 
     // public function show($serieId)
     // {

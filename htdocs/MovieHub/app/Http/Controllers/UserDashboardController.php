@@ -29,6 +29,7 @@ class UserDashboardController extends Controller
 
             $movieReviews = $movieQuery->get()->map(function ($item) {
                 return [
+                    'id' => $item->id, 
                     'type' => 'Película',
                     'title' => $item->movie->title ?? 'Sin título',
                     'rating' => $item->rating,
@@ -50,6 +51,7 @@ class UserDashboardController extends Controller
 
             $serieReviews = $serieQuery->get()->map(function ($item) {
                 return [
+                    'id' => $item->id, 
                     'type' => 'Serie',
                     'title' => $item->serie->title ?? 'Sin título',
                     'rating' => $item->rating,

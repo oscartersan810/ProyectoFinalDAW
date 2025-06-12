@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<main class="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-6 relative overflow-hidden">
+<main class="min-h-screen bg-gradient-to-br from-gray-900 to-black flex items-center justify-center p-4 sm:p-6 relative overflow-hidden">
     <!-- Partículas decorativas -->
     <div class="absolute inset-0 pointer-events-none opacity-20 z-0">
         <div class="particle" style="top: 20%; left: 10%; width: 6px; height: 6px;"></div>
@@ -12,29 +12,29 @@
 
     <div 
         x-data="{ open: false, selectedItem: {}, isMovie: false }"
-        class="relative bg-gray-900 rounded-3xl shadow-2xl p-8 md:p-12 w-full max-w-5xl border border-green-500 backdrop-blur-sm overflow-hidden z-10 animate-fade-in"
+        class="relative bg-gray-900 rounded-2xl sm:rounded-3xl shadow-2xl p-3 sm:p-8 md:p-12 w-full max-w-full sm:max-w-5xl border border-green-500 backdrop-blur-sm overflow-hidden z-10 animate-fade-in"
     >
-        <div class="absolute top-0 right-0 w-32 h-32 bg-green-500 opacity-10 rounded-bl-full"></div>
-        <div class="text-center mb-10 relative z-10">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400 animate-text-glow">
+        <div class="absolute top-0 right-0 w-20 h-20 sm:w-32 sm:h-32 bg-green-500 opacity-10 rounded-bl-full"></div>
+        <div class="text-center mb-8 sm:mb-10 relative z-10">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-yellow-400 animate-text-glow">
                 ❤️ Mis películas y series favoritas
             </h1>
-            <div class="w-24 h-1 bg-gradient-to-r from-green-500 to-yellow-500 mx-auto rounded-full mb-6"></div>
+            <div class="w-16 sm:w-24 h-1 bg-gradient-to-r from-green-500 to-yellow-500 mx-auto rounded-full mb-6"></div>
         </div>
 
-        <div class="mb-10" data-aos="fade-up">
-            <h2 class="text-2xl font-bold text-yellow-400 mb-4">Películas favoritas</h2>
+        <div class="mb-8 sm:mb-10" data-aos="fade-up">
+            <h2 class="text-xl sm:text-2xl font-bold text-yellow-400 mb-4">Películas favoritas</h2>
             @if($favoriteMovies->isEmpty())
                 <p class="text-gray-400 mb-6">No tienes películas favoritas.</p>
             @else
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                     @foreach($favoriteMovies as $movie)
                         <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl group animate-fade-in-up">
-                            <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-green-400 transition">{{ $movie->title }}</h3>
-                                <div class="text-gray-400 text-sm mb-1">{{ $movie->genre }}</div>
-                                <div class="text-gray-400 text-sm mb-2">{{ $movie->year }}</div>
+                            <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="p-3 sm:p-4">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-green-400 transition">{{ $movie->title }}</h3>
+                                <div class="text-gray-400 text-xs sm:text-sm mb-1">{{ $movie->genre }}</div>
+                                <div class="text-gray-400 text-xs sm:text-sm mb-2">{{ $movie->year }}</div>
                                 <button
                                     @click="selectedItem = {{ json_encode([
                                         'id' => $movie->id,
@@ -43,10 +43,10 @@
                                         'genre' => $movie->genre,
                                         'year' => $movie->year,
                                         'description' => $movie->description,
-                                        'rating' => $movie->average_rating,
+                                        'rating' => $movie->averageRating(),
                                         'type' => 'movies'
                                     ]) }}; isMovie = true; open = true"
-                                    class="text-green-400 hover:underline focus:outline-none transition"
+                                    class="text-green-400 hover:underline focus:outline-none transition text-sm"
                                 >
                                     Ver detalles
                                 </button>
@@ -58,18 +58,18 @@
         </div>
 
         <div data-aos="fade-up" data-aos-delay="100">
-            <h2 class="text-2xl font-bold text-yellow-400 mb-4">Series favoritas</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-yellow-400 mb-4">Series favoritas</h2>
             @if($favoriteSeries->isEmpty())
                 <p class="text-gray-400 mb-6">No tienes series favoritas.</p>
             @else
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
                     @foreach($favoriteSeries as $serie)
                         <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-700 transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl group animate-fade-in-up">
-                            <img src="{{ asset('storage/' . $serie->poster) }}" alt="{{ $serie->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition duration-300">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-green-400 transition">{{ $serie->title }}</h3>
-                                <div class="text-gray-400 text-sm mb-1">{{ $serie->genre }}</div>
-                                <div class="text-gray-400 text-sm mb-2">{{ $serie->year }}</div>
+                            <img src="{{ asset('storage/' . $serie->poster) }}" alt="{{ $serie->title }}" class="w-full h-44 sm:h-48 object-cover group-hover:scale-105 transition duration-300">
+                            <div class="p-3 sm:p-4">
+                                <h3 class="text-base sm:text-lg font-bold text-white mb-2 group-hover:text-green-400 transition">{{ $serie->title }}</h3>
+                                <div class="text-gray-400 text-xs sm:text-sm mb-1">{{ $serie->genre }}</div>
+                                <div class="text-gray-400 text-xs sm:text-sm mb-2">{{ $serie->year }}</div>
                                 <button
                                     @click="selectedItem = {{ json_encode([
                                         'id' => $serie->id,
@@ -78,10 +78,10 @@
                                         'genre' => $serie->genre,
                                         'year' => $serie->year,
                                         'description' => $serie->description,
-                                        'rating' => $serie->average_rating,
+                                        'rating' => $serie->averageRating(),
                                         'type' => 'series'
                                     ]) }}; isMovie = false; open = true"
-                                    class="text-green-400 hover:underline focus:outline-none transition"
+                                    class="text-green-400 hover:underline focus:outline-none transition text-sm"
                                 >
                                     Ver detalles
                                 </button>
@@ -96,39 +96,39 @@
         <div 
             x-show="open" 
             x-transition.opacity 
-            class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
+            class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-2 sm:p-4"
             style="display: none;"
         >
-            <div @click.away="open = false" class="bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-700 relative animate-fade-in-up">
-                <button @click="open = false" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-10 transition">&times;</button>
+            <div @click.away="open = false" class="bg-gray-800 rounded-xl sm:rounded-2xl max-w-xs sm:max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-gray-700 relative animate-fade-in-up">
+                <button @click="open = false" class="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-white text-2xl font-bold z-10 transition">&times;</button>
                 <div class="relative">
-                    <div class="h-64 w-full bg-gray-900 overflow-hidden">
+                    <div class="h-40 sm:h-64 w-full bg-gray-900 overflow-hidden">
                         <img :src="'/storage/' + selectedItem.poster" class="w-full h-full object-cover opacity-50 transition duration-500" alt="">
                     </div>
-                    <div class="relative z-10 p-6 md:p-8">
-                        <div class="flex flex-col md:flex-row gap-6">
-                            <div class="flex-shrink-0 w-full md:w-1/3 -mt-20">
+                    <div class="relative z-10 p-4 sm:p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row gap-4 sm:gap-6">
+                            <div class="flex-shrink-0 w-full md:w-1/3 -mt-12 sm:-mt-20">
                                 <img :src="'/storage/' + selectedItem.poster" class="w-full rounded-xl shadow-xl border-4 border-gray-700" alt="">
                             </div>
                             <div class="flex-grow">
-                                <h2 class="text-3xl font-bold text-white mb-2" x-text="selectedItem.title"></h2>
-                                <div class="flex items-center space-x-4 mb-4">
-                                    <span class="text-gray-400" x-text="selectedItem.year"></span>
+                                <h2 class="text-xl sm:text-3xl font-bold text-white mb-2" x-text="selectedItem.title"></h2>
+                                <div class="flex items-center space-x-2 sm:space-x-4 mb-4">
+                                    <span class="text-gray-400 text-sm sm:text-base" x-text="selectedItem.year"></span>
                                     <span class="text-gray-400">•</span>
-                                    <span class="text-gray-400" x-text="selectedItem.genre"></span>
+                                    <span class="text-gray-400 text-sm sm:text-base" x-text="selectedItem.genre"></span>
                                 </div>
-                                <div class="flex items-center mb-6">
+                                <div class="flex items-center mb-4 sm:mb-6">
                                     <template x-for="i in 5" :key="i">
                                         <span
                                             :class="i <= Math.round(selectedItem.rating || 0) ? 'text-yellow-400' : 'text-gray-600'"
-                                            class="text-2xl transition">★</span>
+                                            class="text-xl sm:text-2xl transition">★</span>
                                     </template>
-                                    <span class="text-white ml-2" x-text="selectedItem.rating !== null ? '(' + parseFloat(selectedItem.rating).toFixed(1) + ')' : '(Sin valoración)'"></span>
+                                    <span class="text-white ml-2 text-sm sm:text-base" x-text="selectedItem.rating !== null ? '(' + parseFloat(selectedItem.rating).toFixed(1) + ')' : '(Sin valoración)'"></span>
                                 </div>
-                                <p class="text-gray-300 mb-6" x-text="selectedItem.description"></p>
-                                <div class="flex space-x-4">
+                                <p class="text-gray-300 mb-4 sm:mb-6 text-sm sm:text-base" x-text="selectedItem.description"></p>
+                                <div class="flex space-x-2 sm:space-x-4">
                                     <a :href="'/resenas/create?type=' + selectedItem.type + '&id=' + selectedItem.id"
-                                        class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-3 px-6 rounded-xl transition"
+                                        class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 sm:py-3 sm:px-6 rounded-xl transition text-sm sm:text-base"
                                     >
                                         Escribir Reseña
                                     </a>
@@ -181,6 +181,10 @@
     @keyframes text-glow {
         from { text-shadow: 0 0 5px rgba(247, 239, 5, 0.5); }
         to { text-shadow: 0 0 15px rgba(16, 185, 129, 0.7); }
+    }
+    @media (max-width: 640px) {
+        .max-w-5xl { max-width: 100% !important; }
+        .rounded-3xl { border-radius: 1rem !important; }
     }
 </style>
 @endsection

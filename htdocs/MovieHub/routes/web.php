@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\ReviewsController;
 use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Explorer\ExplorerController;
@@ -67,12 +68,20 @@ Route::prefix('admin')->group(function () {
         Route::put('/{serie}', [SeriesController::class, 'update'])->name('admin.series.update');
         Route::delete('/{serie}', [SeriesController::class, 'destroy'])->name('admin.series.destroy');
     });
-
+    // Usuarios
     Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/users', [UserController::class, 'index'])->name('admin.users');
         Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
         Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
         Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    });
+
+    // Reviews (reseñas)
+    Route::prefix('reviews')->group(function () {
+        Route::get('/', [ReviewsController::class, 'index'])->name('admin.reviews');
+        Route::get('/{type}/{review}/edit', [ReviewsController::class, 'edit'])->name('admin.reviews.edit');
+        Route::put('/{type}/{review}', [ReviewsController::class, 'update'])->name('admin.reviews.update');
+        Route::delete('/{review}', [ReviewsController::class, 'destroy'])->name('admin.reviews.destroy');
     });
 });
 
@@ -101,5 +110,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 });
 
+// Para reseñas de películas
+Route::delete('/reviews/movies/{review}', [App\Http\Controllers\ReviewMovieController::class, 'destroy'])
+    ->name('reviews.movies.destroy');
+
+// Para reseñas de series (si tienes ReviewSerieController)
+Route::delete('/reviews/series/{review}', [App\Http\Controllers\ReviewSerieController::class, 'destroy'])
+    ->name('reviews.series.destroy');
 
 require __DIR__ . '/auth.php';

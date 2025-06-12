@@ -111,9 +111,9 @@
                 Panel de Administrador
             </h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Admin 1 -->
-                <a href="{{ route('admin.movies') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <a href="{{ route('admin.movies') }}" class="bg-gray-800 hover:bg-green-900 border border-green-500 hover:border-green-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
                     <div class="flex items-center mb-4">
                         <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
                             <span class="text-2xl">🎥</span>
@@ -124,7 +124,7 @@
                 </a>
                 
                 <!-- Admin 2 -->
-                <a href="{{ route('admin.series') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <a href="{{ route('admin.series') }}" class="bg-gray-800 hover:bg-green-900 border border-green-500 hover:border-green-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
                     <div class="flex items-center mb-4">
                         <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
                             <span class="text-2xl">📺</span>
@@ -135,7 +135,7 @@
                 </a>
                 
                 <!-- Admin 3 -->
-                <a href="{{ route('admin.users') }}" class="bg-gray-800 hover:bg-yellow-900 border border-green-500 hover:border-yellow-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group md:col-span-2 lg:col-span-1">
+                <a href="{{ route('admin.users') }}" class="bg-gray-800 hover:bg-green-900 border border-green-500 hover:border-green-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
                     <div class="flex items-center mb-4">
                         <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
                             <span class="text-2xl">👥</span>
@@ -143,6 +143,17 @@
                         <h3 class="text-xl font-bold text-white">Administrar usuarios</h3>
                     </div>
                     <p class="text-gray-400">Gestiona los usuarios del sistema</p>
+                </a>
+
+                <!-- Admin 4: Administrar reseñas -->
+                <a href="{{ route('admin.reviews') }}" class="bg-gray-800 hover:bg-green-900 border border-green-500 hover:border-green-300 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-500 p-3 rounded-lg mr-4 group-hover:bg-green-400 transition">
+                            <span class="text-2xl">📝</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Administrar reseñas</h3>
+                    </div>
+                    <p class="text-gray-400">Gestiona todas las reseñas de usuarios</p>
                 </a>
             </div>
         </div>

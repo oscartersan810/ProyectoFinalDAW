@@ -62,6 +62,20 @@ class ReviewMovieController extends Controller
         return redirect()->route('explore')->with('success', 'Reseña publicada');
     }
 
+    public function destroy($id)
+    {
+        $review = ReviewMovie::findOrFail($id);
+
+        // Opcional: verifica que el usuario sea el dueño de la reseña
+        if ($review->user_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $review->delete();
+
+        return back()->with('success', 'Reseña eliminada correctamente.');
+    }
+
     // // Mostrar una película específica y sus reseñas + formulario
     // public function show($movieId)
     // {

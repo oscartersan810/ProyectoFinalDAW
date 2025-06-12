@@ -40,6 +40,7 @@
                                 <th class="px-3 py-2">Puntuación</th>
                                 <th class="px-3 py-2">Contenido</th>
                                 <th class="px-3 py-2">Fecha</th>
+                                <th class="px-3 py-2">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,6 +51,18 @@
                                 <td class="px-3 py-2">{{ $review['rating'] }} ⭐</td>
                                 <td class="px-3 py-2">{{ $review['content'] }}</td>
                                 <td class="px-3 py-2">{{ \Carbon\Carbon::parse($review['created_at'])->format('d/m/Y') }}</td>
+                                <td class="px-3 py-2">
+                                    <form method="POST" action="{{ $review['type'] === 'Película' 
+                                        ? route('reviews.movies.destroy', $review['id']) 
+                                        : route('reviews.series.destroy', $review['id']) }}" 
+                                        onsubmit="return confirm('¿Seguro que deseas eliminar esta reseña?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-xl text-sm transition">
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
