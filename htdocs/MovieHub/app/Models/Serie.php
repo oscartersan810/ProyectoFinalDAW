@@ -23,4 +23,9 @@ class Serie extends Model
     {
         return $this->reviews()->avg('rating') ?? 0;
     }
+
+        public function favorites()
+{
+    return $this->morphMany(Favorite::class, 'favoritable');
+}
 }
