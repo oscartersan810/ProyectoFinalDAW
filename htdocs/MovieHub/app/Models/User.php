@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Favorite; 
 
 class User extends Authenticatable
 {
@@ -54,5 +56,10 @@ class User extends Authenticatable
     public function reviews()
     {
         return $this->hasMany(ReviewMovie::class, 'user_id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }

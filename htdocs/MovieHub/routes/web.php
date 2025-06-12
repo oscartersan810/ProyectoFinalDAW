@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Explorer\ExplorerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AvatarSelectionController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewMovieController;
 use App\Http\Controllers\ReviewSerieController;
@@ -92,6 +93,9 @@ Route::get('/series/{id}', [SeriesController::class, 'show'])->name('series.show
 Route::get('/tops', [TopController::class, 'index'])->name('tops');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
+});
 
 
 require __DIR__ . '/auth.php';

@@ -6,27 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Models\Movie;
 use App\Models\Serie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExplorerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $type = $request->input('type', 'movies'); // Por defecto 'movies'
         $title = $request->input('title');
-        $genre = $request->input(key: 'genre');
+        $genre = $request->input('genre');
         $year = $request->input('year');
 
-        // Consulta dinámica según el tipo
         if ($type === 'series') {
             $query = Serie::query();
         } else {
             $query = Movie::query();
         }
 
-        // Aplicar filtros
         if ($title) {
             $query->where('title', 'LIKE', "%$title%");
         }
@@ -41,14 +38,38 @@ class ExplorerController extends Controller
 
         $items = $query->paginate(12);
 
-        // Obtener todos los géneros únicos de ambas tablas si lo deseas unificado
-        $genres = collect([]);
         if ($type === 'series') {
             $genres = Serie::select('genre')->distinct()->pluck('genre');
         } else {
             $genres = Movie::select('genre')->distinct()->pluck('genre');
         }
 
-        return view('pages.explore', compact('items', 'genres'));
+        $user = Auth::user();
+
+        if ($user) {
+            $favoriteIds = [];
+
+            if ($type === 'series') {
+                $favoriteIds = DB::table('favorites')
+                    ->where('user_id', $user->id)
+                    ->whereNotNull('serie_id')
+                    ->pluck('serie_id')
+                    ->toArray();
+            } else {
+                $favoriteIds = DB::table('favorites')
+                    ->where('user_id', $user->id)
+                    ->whereNotNull('movie_id')
+                    ->pluck('movie_id')
+                    ->toArray();
+            }
+
+            foreach ($items as $item) {
+                $item->isFavorite = in_array($item->id, $favoriteIds);
+                // CORREGIDO: type en plural
+                $item->type = $type === 'series' ? 'series' : 'movies';
+            }
+        }
+
+        return view('pages.explore', compact('items', 'genres', 'type', 'title', 'genre', 'year'));
     }
 }
