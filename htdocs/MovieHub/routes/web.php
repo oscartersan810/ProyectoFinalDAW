@@ -12,6 +12,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ReviewMovieController;
 use App\Http\Controllers\ReviewSerieController;
 use App\Http\Controllers\TopController;
+use App\Http\Controllers\User\FavoritesController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,7 +32,10 @@ Route::get('/dashboard/resenas', [UserDashboardController::class, 'resenas'])->n
 // Películas y series puntuadas
 Route::get('/dashboard/puntuadas', [UserDashboardController::class, 'puntuadas'])->name('dashboard.puntuadas');
 
-
+Route::middleware(['auth'])->group(function () {
+    // ...otras rutas...
+    Route::get('/dashboard/favorites', [FavoritesController::class, 'index'])->name('dashboard.favorites');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

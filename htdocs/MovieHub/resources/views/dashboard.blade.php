@@ -65,8 +65,19 @@
                 </div>
                 <p class="text-gray-400">Tus valoraciones y calificaciones</p>
             </a>
+
+            <!-- Tarjeta 3: Favoritos -->
+            <a href="{{ route('dashboard.favorites') }}" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-pink-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
+                <div class="flex items-center mb-4">
+                    <div class="bg-pink-500 p-3 rounded-lg mr-4 group-hover:bg-pink-600 transition">
+                        <span class="text-2xl">❤️</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">Mis películas y series favoritas</h3>
+                </div>
+                <p class="text-gray-400">Consulta tu lista de favoritos</p>
+            </a>
             
-            <!-- Tarjeta 3: Editar perfil -->
+            <!-- Tarjeta 4: Editar perfil -->
             <a href="{{ route('profile.edit') }}" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-yellow-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group">
                 <div class="flex items-center mb-4">
                     <div class="bg-yellow-500 p-3 rounded-lg mr-4 group-hover:bg-yellow-600 transition">
@@ -77,7 +88,7 @@
                 <p class="text-gray-400">Actualiza tu información personal</p>
             </a>
             
-            <!-- Tarjeta 4: Cerrar sesión -->
+            <!-- Tarjeta 5: Cerrar sesión -->
             <form method="POST" action="{{ route('logout') }}" class="contents">
                 @csrf
                 <button type="submit" class="bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-red-400 rounded-2xl p-6 shadow-lg transform hover:-translate-y-1 transition duration-300 group text-left w-full">

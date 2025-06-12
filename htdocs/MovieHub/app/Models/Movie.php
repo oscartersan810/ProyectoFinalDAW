@@ -25,11 +25,13 @@ class Movie extends Model
         return $this->reviews()->avg('rating') ?? 0;
     }
 
+    public function getAverageRatingAttribute()
+    {
+        return $this->reviews()->avg('rating') ?? 0;
+    }
+
     public function favorites()
-{
-    return $this->morphMany(Favorite::class, 'favoritable');
-}
-
-
-    
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
+    }
 }

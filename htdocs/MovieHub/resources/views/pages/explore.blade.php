@@ -72,7 +72,12 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     @foreach ($items as $item)
                     <div
-                        @click="selectedItem = {{ $item->toJson() }}; open = true; isFavorite = {{ $item->isFavorite ? 'true' : 'false' }};"
+                        @click="
+                            selectedItem = {{ $item->toJson() }};
+                            selectedItem.type = '{{ $item->type }}';
+                            open = true;
+                            isFavorite = {{ $item->isFavorite ? 'true' : 'false' }};
+                        "
                         class="cursor-pointer bg-gray-800 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-700 relative">
 
                         <form method="POST" action="{{ route('favorite.toggle') }}" class="absolute top-3 right-3 z-10" onsubmit="event.stopPropagation();">
