@@ -15,6 +15,7 @@ use App\Http\Controllers\ReviewSerieController;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\User\FavoritesController;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -117,5 +118,15 @@ Route::delete('/reviews/movies/{review}', [App\Http\Controllers\ReviewMovieContr
 // Para reseñas de series (si tienes ReviewSerieController)
 Route::delete('/reviews/series/{review}', [App\Http\Controllers\ReviewSerieController::class, 'destroy'])
     ->name('reviews.series.destroy');
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->middleware('guest')
+    ->name('password.reset');
+
+Route::post('reset-password', [NewPasswordController::class, 'store'])
+    ->middleware('guest')
+    ->name('password.update');
+
+Route::view('/soporte', 'pages.soporte')->name('soporte');
 
 require __DIR__ . '/auth.php';

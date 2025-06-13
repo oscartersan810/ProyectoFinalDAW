@@ -47,6 +47,7 @@
                     <div>
                         <label class="block text-gray-300 mb-2">Año</label>
                         <input type="number" name="year" placeholder="Año" value="{{ request('year') }}"
+                            min="1920"
                             class="w-full bg-gray-700 border border-gray-600 text-white rounded-xl px-4 py-3">
                     </div>
 

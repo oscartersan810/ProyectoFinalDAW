@@ -356,6 +356,13 @@
                 }, {passive: true});
             });
 
+            // Habilitar botón aceptar al seleccionar cualquier avatar (click o touch)
+            document.querySelectorAll('input[name="avatar"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    document.getElementById('acceptBtn').disabled = false;
+                });
+            });
+
             document.getElementById('randomAvatarBtn').addEventListener('click', () => {
                 const visibleRadios = avatars
                     .filter(el => !el.classList.contains('hidden'))

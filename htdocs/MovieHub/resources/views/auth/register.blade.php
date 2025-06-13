@@ -81,17 +81,37 @@
             <!-- Contraseña -->
             <div>
                 <label class="block text-sm text-yellow-300 mb-2">Contraseña</label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-3 py-2 bg-gray-800/70 rounded border border-gray-700 text-white placeholder-gray-500 text-sm"
-                    placeholder="••••••••">
+                <div class="relative">
+                    <input type="password" id="password" name="password" required
+                        class="w-full px-3 py-2 pr-10 bg-gray-800/70 rounded border border-gray-700 text-white placeholder-gray-500 text-sm"
+                        placeholder="••••••••">
+                    <button type="button"
+                        onclick="togglePassword('password', this)"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-yellow-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- Confirmar Contraseña -->
             <div>
                 <label class="block text-sm text-yellow-300 mb-2">Confirmar contraseña</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required
-                    class="w-full px-3 py-2 bg-gray-800/70 rounded border border-gray-700 text-white placeholder-gray-500 text-sm"
-                    placeholder="••••••••">
+                <div class="relative">
+                    <input type="password" id="password_confirmation" name="password_confirmation" required
+                        class="w-full px-3 py-2 pr-10 bg-gray-800/70 rounded border border-gray-700 text-white placeholder-gray-500 text-sm"
+                        placeholder="••••••••">
+                    <button type="button"
+                        onclick="togglePassword('password_confirmation', this)"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-yellow-400 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- Botón -->
@@ -148,6 +168,27 @@
             }
             animate();
         });
+
+        // Toggle password visibility
+        function togglePassword(id, btn) {
+            const input = document.getElementById(id);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 text-yellow-400">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.055 10.055 0 012.155-3.411m3.168-2.494A9.956 9.956 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.06 10.06 0 01-4.522 5.927M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                `;
+            } else {
+                input.type = 'password';
+                btn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+                `;
+            }
+        }
     </script>
 
 </body>

@@ -101,9 +101,9 @@
             <div class="w-24 md:w-32 h-1 bg-yellow-500 mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-4 md:gap-8 justify-items-center">
-            <!-- Caja 1 mejorada -->
-            <div class="w-full h-36 sm:h-36 md:h-48 bg-gradient-to-br from-purple-700 to-yellow-700 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-purple-400">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 md:gap-10 justify-items-center place-items-center">
+            <!-- Caja 1 -->
+            <div class="w-full max-w-xs h-36 sm:h-40 md:h-48 bg-gradient-to-br from-purple-700 to-yellow-700 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-purple-400">
                 <div class="bg-white bg-opacity-20 p-3 md:p-4 rounded-full mb-3 md:mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
@@ -111,8 +111,8 @@
                 </div>
                 <h3 class="text-sm md:text-lg font-semibold">Puntuar películas y series</h3>
             </div>
-            <!-- Caja 2 mejorada -->
-            <div class="w-full h-36 sm:h-36 md:h-48 bg-gradient-to-br from-pink-600 to-red-600 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-pink-400">
+            <!-- Caja 2 -->
+            <div class="w-full max-w-xs h-36 sm:h-40 md:h-48 bg-gradient-to-br from-pink-600 to-red-600 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-pink-400">
                 <div class="bg-white bg-opacity-20 p-3 md:p-4 rounded-full mb-3 md:mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
@@ -120,8 +120,8 @@
                 </div>
                 <h3 class="text-sm md:text-lg font-semibold">Leer y escribir reseñas</h3>
             </div>
-            <!-- Caja 3 mejorada -->
-            <div class="w-full h-36 sm:h-36 md:h-48 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-green-400">
+            <!-- Caja 3 -->
+            <div class="w-full max-w-xs h-36 sm:h-40 md:h-48 bg-gradient-to-br from-green-600 to-emerald-600 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-green-400">
                 <div class="bg-white bg-opacity-20 p-3 md:p-4 rounded-full mb-3 md:mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21V3m4 9l6 6" />
@@ -129,32 +129,14 @@
                 </div>
                 <h3 class="text-sm md:text-lg font-semibold">Consultar rankings</h3>
             </div>
-            <!-- Caja 4 mejorada -->
-            <div class="w-full h-36 sm:h-36 md:h-48 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-yellow-400">
+            <!-- Caja 4 -->
+            <div class="w-full max-w-xs h-36 sm:h-40 md:h-48 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-yellow-400">
                 <div class="bg-white bg-opacity-20 p-3 md:p-4 rounded-full mb-3 md:mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                     </svg>
                 </div>
-                <h3 class="text-sm md:text-lg font-semibold">Crear listas</h3>
-            </div>
-            <!-- Caja 5 mejorada - Solo visible en móvil si hay espacio -->
-            <div class="col-span-2 sm:hidden w-full h-36 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex flex-col items-center justify-center text-center p-4 text-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-blue-400 mt-4">
-                <div class="bg-white bg-opacity-20 p-3 rounded-full mb-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12h2a2 2 0 0 1 2 2v6m-6-6h6" />
-                    </svg>
-                </div>
-                <h3 class="text-sm font-semibold">Seguir usuarios</h3>
-            </div>
-            <!-- Caja 5 para tablet/desktop -->
-            <div class="hidden sm:block w-full h-36 sm:h-36 md:h-48 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl md:rounded-3xl flex flex-col items-center justify-center text-center p-4 md:p-6 text-white shadow-lg md:shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 border-2 border-transparent hover:border-blue-400">
-                <div class="bg-white bg-opacity-20 p-3 md:p-4 rounded-full mb-3 md:mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-10 md:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12h2a2 2 0 0 1 2 2v6m-6-6h6" />
-                    </svg>
-                </div>
-                <h3 class="text-sm md:text-lg font-semibold">Seguir usuarios</h3>
+                <h3 class="text-sm md:text-lg font-semibold">Añadir favoritas</h3>
             </div>
         </div>
     </div>

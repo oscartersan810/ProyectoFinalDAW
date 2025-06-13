@@ -53,6 +53,16 @@
                 </a>
             </li>
 
+            <!-- Enlace a Soporte/Ayuda -->
+            <li>
+                <a href="{{ route('soporte') }}" class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center py-2 px-3 rounded-lg hover:bg-gray-700">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17h8M8 13h6M9 21h6a2 2 0 002-2V7a2 2 0 00-2-2h-1V4a2 2 0 10-4 0v1H9a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Soporte
+                </a>
+            </li>
+
             <!-- Reseñas Dropdown - Corregido -->
             <li class="relative group">
                 <button class="text-gray-300 hover:text-yellow-400 transition duration-300 flex items-center py-2 px-3 rounded-lg hover:bg-gray-700">
