@@ -181,6 +181,16 @@
                 </a>
             </li>
 
+            <!-- Enlace Soporte/Ayuda en menú móvil -->
+            <li>
+                <a href="{{ route('soporte') }}" class="flex items-center px-3 py-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-yellow-400 transition">
+                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17h8M8 13h6M9 21h6a2 2 0 002-2V7a2 2 0 00-2-2h-1V4a2 2 0 10-4 0v1H9a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Soporte
+                </a>
+            </li>
+
             <li class="pt-2 border-t border-gray-700">
                 <p class="px-3 py-2 text-gray-400 uppercase text-xs font-bold">Reseñas</p>
                 <ul class="pl-5 mt-1 space-y-2">
