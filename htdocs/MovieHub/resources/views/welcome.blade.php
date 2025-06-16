@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- BIENVENIDA - Optimizada para móviles pequeños -->
+<!-- BIENVENIDA - Optimizada para móviles -->
 <section id="bienvenida" class="text-center py-8 md:py-16 min-h-[60vh] md:min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden" data-aos="fade-up">
     <!-- Efecto de partículas simplificado para móviles -->
     <div class="absolute inset-0 z-0 opacity-20">
@@ -15,24 +15,26 @@
             BIENVENIDO A <span class="text-yellow-400">MOVIEHUB</span>
         </h1>
 
-        <!-- Grid de películas optimizado para móviles -->
-        <div class="flex sm:grid sm:grid-cols-3 gap-4 md:gap-8 w-full max-w-6xl mx-auto overflow-x-auto sm:overflow-visible pb-6 sm:pb-0 hide-scrollbar">
-            <!-- Película 1 - Siempre visible -->
-            <div class="min-w-[180px] sm:min-w-0 overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-yellow-500 group">
-                <img src="/images/moviesimages/movie1.png" alt="Película 1" class="w-full h-40 sm:h-48 md:h-96 object-cover object-top group-hover:opacity-90 transition duration-300">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+        <!-- Grid de portadas aleatorias -->
+        <div class="w-full max-w-6xl mx-auto pb-6 sm:pb-0">
+            <!-- Solo una portada en móvil, 3 en grid en sm+ -->
+            <div class="block sm:hidden">
+                @if($randomCovers->count() > 0)
+                    <div class="flex justify-center">
+                        <div class="overflow-hidden rounded-xl shadow-lg bg-gray-800 border border-gray-700 group relative w-40 h-64">
+                            <img src="{{ asset('storage/' . $randomCovers->first()->poster) }}" alt="Portada" class="w-full h-full object-cover object-top group-hover:opacity-90 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                        </div>
+                    </div>
+                @endif
             </div>
-
-            <!-- Película 2 - Visible en móviles como scroll horizontal -->
-            <div class="min-w-[180px] sm:min-w-0 overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-pink-500 group sm:block">
-                <img src="/images/moviesimages/movie2.jpg" alt="Película 2" class="w-full h-40 sm:h-48 md:h-96 object-cover object-top group-hover:opacity-90 transition duration-300">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
-            </div>
-
-            <!-- Película 3 - Visible en móviles como scroll horizontal -->
-            <div class="min-w-[180px] sm:min-w-0 overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-yellow-400 group sm:block">
-                <img src="/images/moviesimages/movie3.png" alt="Película 3" class="w-full h-40 sm:h-48 md:h-96 object-cover object-top group-hover:opacity-90 transition duration-300">
-                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+            <div class="hidden sm:grid sm:grid-cols-3 gap-4 md:gap-8">
+                @foreach($randomCovers as $cover)
+                    <div class="overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-yellow-500 group relative">
+                        <img src="{{ asset('storage/' . $cover->poster) }}" alt="Portada" class="w-full h-40 sm:h-48 md:h-96 object-cover object-top group-hover:opacity-90 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                    </div>
+                @endforeach
             </div>
         </div>
 
