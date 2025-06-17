@@ -39,16 +39,16 @@
             <div class="bg-gray-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transition duration-300 border border-gray-700 transform hover:-translate-y-1">
                 {{-- Encabezado con avatar y título --}}
                 <div class="flex items-center mb-4">
-                    <div class="relative">
+                    <div class="relative flex items-center justify-center w-14 h-14">
                         <img src="{{ asset('storage/' . $review->user->avatar) }}"
-                            class="w-14 h-14 rounded-full border-2 border-yellow-500 object-cover"
+                            class="w-14 h-14 rounded-full object-cover object-center border-2 border-yellow-500"
                             alt="Avatar de {{ $review->user->name }}">
                         <div class="absolute -bottom-1 -right-1 bg-yellow-600 rounded-full w-6 h-6 flex items-center justify-center">
                             <span class="text-white text-xs font-bold">★</span>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <h3 class="text-xl font-bold text-white">{{ $review->serie->title }}</h3>
+                    <div class="ml-4 flex-1 min-w-0">
+                        <h3 class="text-xl font-bold text-white truncate cursor-pointer" title="{{ $review->serie->title }}">{{ $review->serie->title }}</h3>
                         <p class="text-yellow-400">{{ $review->user->name }}</p>
                     </div>
                 </div>

@@ -17,21 +17,31 @@
 
         <!-- Grid de portadas aleatorias -->
         <div class="w-full max-w-6xl mx-auto pb-6 sm:pb-0">
-            <!-- Solo una portada en móvil, 3 en grid en sm+ -->
+            <!-- Solo una portada en móvil -->
             <div class="block sm:hidden">
                 @if($randomCovers->count() > 0)
                     <div class="flex justify-center">
-                        <div class="overflow-hidden rounded-xl shadow-lg bg-gray-800 border border-gray-700 group relative w-40 h-64">
+                        <div class="overflow-hidden rounded-xl shadow-lg bg-gray-800 border border-gray-700 group relative w-40 h-80">
                             <img src="{{ asset('storage/' . $randomCovers->first()->poster) }}" alt="Portada" class="w-full h-full object-cover object-top group-hover:opacity-90 transition duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                         </div>
                     </div>
                 @endif
             </div>
-            <div class="hidden sm:grid sm:grid-cols-3 gap-4 md:gap-8">
-                @foreach($randomCovers as $cover)
+            <!-- Dos portadas en tablet (sm: 640px+) hasta md-1 (1023px) -->
+            <div class="hidden sm:grid md:hidden sm:grid-cols-2 gap-4">
+                @foreach($randomCovers->take(2) as $cover)
                     <div class="overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-yellow-500 group relative">
-                        <img src="{{ asset('storage/' . $cover->poster) }}" alt="Portada" class="w-full h-40 sm:h-48 md:h-96 object-cover object-top group-hover:opacity-90 transition duration-300">
+                        <img src="{{ asset('storage/' . $cover->poster) }}" alt="Portada" class="w-full h-64 sm:h-80 md:h-[32rem] object-cover object-top group-hover:opacity-90 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
+                    </div>
+                @endforeach
+            </div>
+            <!-- Tres portadas en escritorio (md: 1024px+) -->
+            <div class="hidden md:grid md:grid-cols-3 gap-4 md:gap-8">
+                @foreach($randomCovers->take(3) as $cover)
+                    <div class="overflow-hidden rounded-xl md:rounded-3xl shadow-lg transform transition duration-300 hover:scale-105 bg-gray-800 border border-gray-700 hover:border-yellow-500 group relative">
+                        <img src="{{ asset('storage/' . $cover->poster) }}" alt="Portada" class="w-full h-64 sm:h-80 md:h-[32rem] object-cover object-top group-hover:opacity-90 transition duration-300">
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-70"></div>
                     </div>
                 @endforeach
