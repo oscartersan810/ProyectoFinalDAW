@@ -84,6 +84,10 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- Paginación -->
+                <div class="mt-8 flex justify-center">
+                    {{ $reviews->links() }}
+                </div>
             @endif
         </div>
     </section>

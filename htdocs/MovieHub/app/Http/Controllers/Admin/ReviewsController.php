@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ReviewMovie;
 use App\Models\ReviewSerie;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ReviewsController extends Controller
 {
@@ -74,7 +75,19 @@ class ReviewsController extends Controller
             });
         }
 
-        $reviews = $movieReviews->concat($serieReviews)->sortByDesc('created_at');
+        // Combina, ordena y pagina
+        $allReviews = $movieReviews->concat($serieReviews)->sortByDesc('created_at')->values();
+
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $allReviews->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        $reviews = new LengthAwarePaginator(
+            $currentItems,
+            $allReviews->count(),
+            $perPage,
+            $currentPage,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
 
         return view('admin.reviews.index', [
             'reviews' => $reviews,
