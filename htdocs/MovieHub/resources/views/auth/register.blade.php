@@ -84,7 +84,9 @@
                 <div class="relative">
                     <input type="password" id="password" name="password" required
                         class="w-full px-3 py-2 pr-10 bg-gray-800/70 rounded border border-gray-700 text-white placeholder-gray-500 text-sm"
-                        placeholder="••••••••">
+                        placeholder="••••••••"
+                        pattern="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[A-Z]).{8,}$"
+                        title="Mínimo 8 caracteres, una mayúscula, una letra y un número">
                     <button type="button"
                         onclick="togglePassword('password', this)"
                         class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-yellow-400 focus:outline-none">
@@ -94,6 +96,10 @@
                         </svg>
                     </button>
                 </div>
+                <p class="text-xs text-gray-400 mt-1">
+                    Mínimo 8 caracteres, una mayúscula, una letra y un número.
+                </p>
+                <p id="passwordError" class="text-red-400 text-xs mt-1 hidden"></p>
             </div>
 
             <!-- Confirmar Contraseña -->
@@ -189,6 +195,20 @@
                 `;
             }
         }
+
+        // Validación extra de contraseña en el cliente
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const pass = document.getElementById('password').value;
+            const error = document.getElementById('passwordError');
+            const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[A-Z]).{8,}$/;
+            if (!regex.test(pass)) {
+                error.textContent = 'La contraseña debe tener mínimo 8 caracteres, una mayúscula, una letra y un número.';
+                error.classList.remove('hidden');
+                e.preventDefault();
+            } else {
+                error.classList.add('hidden');
+            }
+        });
     </script>
 
 </body>
