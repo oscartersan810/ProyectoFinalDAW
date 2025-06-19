@@ -118,6 +118,7 @@
                         </svg>
                     </button>
                 </div>
+                <p id="passwordMatchError" class="text-red-400 text-xs mt-1 hidden"></p>
             </div>
 
             <!-- Botón -->
@@ -199,15 +200,29 @@
         // Validación extra de contraseña en el cliente
         document.querySelector('form').addEventListener('submit', function(e) {
             const pass = document.getElementById('password').value;
+            const passConf = document.getElementById('password_confirmation').value;
             const error = document.getElementById('passwordError');
+            const matchError = document.getElementById('passwordMatchError');
             const regex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[A-Z]).{8,}$/;
+            let valid = true;
+
             if (!regex.test(pass)) {
                 error.textContent = 'La contraseña debe tener mínimo 8 caracteres, una mayúscula, una letra y un número.';
                 error.classList.remove('hidden');
-                e.preventDefault();
+                valid = false;
             } else {
                 error.classList.add('hidden');
             }
+
+            if (pass !== passConf) {
+                matchError.textContent = 'Las contraseñas no coinciden.';
+                matchError.classList.remove('hidden');
+                valid = false;
+            } else {
+                matchError.classList.add('hidden');
+            }
+
+            if (!valid) e.preventDefault();
         });
     </script>
 
